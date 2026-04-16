@@ -13,7 +13,8 @@ export default function VidifySidebar() {
 
   const main = [
     { to: '/dashboard', label: 'Dashboard', icon: '◎' },
-    { to: '/create', label: 'Create New', icon: '✦' },
+    { to: '/image-gen', label: 'AI Image Gen', icon: '🖼' },
+    { to: '/create', label: 'Create Video', icon: '✦' },
     { to: '/library', label: 'My Videos', icon: '▤', badge: '18' },
     { to: '/templates', label: 'Templates', icon: '⧉' },
   ]
@@ -26,8 +27,9 @@ export default function VidifySidebar() {
   const analyze = [{ to: '/analytics', label: 'Analytics', icon: '📈' }]
 
   const settings = [
-    { to: '/settings', label: 'Brand Kit', icon: '◇' },
+    { to: '/brand-kit', label: 'Brand Kit', icon: '◇' },
     { to: '/billing', label: 'Billing', icon: '💳' },
+    { to: '/notifications', label: 'Notifications', icon: '🔔', badge: '6', badgeColor: 'red' },
     { to: '/settings', label: 'Settings', icon: '⚙', key: 'settings-end' },
   ]
 
@@ -98,26 +100,32 @@ export default function VidifySidebar() {
         <div>
           <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Settings</p>
           <div className="space-y-1">
-            {settings.map((item) => {
-              const settingsActive =
-                item.to === '/billing'
-                  ? pathname === '/billing'
-                  : item.to === '/settings' && pathname === '/settings'
-
-              return (
-                <Link
-                  key={item.key || item.label}
-                  to={item.to}
-                  className={itemCls(settingsActive)}
-                  title={item.label}
-                >
+            {settings.map((item) => (
+              <Link
+                key={item.key || item.label}
+                to={item.to}
+                className={`${itemCls(pathname === item.to)} ${item.badge ? 'justify-between' : ''}`}
+                title={item.label}
+              >
+                <span className="flex items-center gap-3">
                   <span className="text-lg" aria-hidden>
                     {item.icon}
                   </span>
                   <span>{item.label}</span>
-                </Link>
-              )
-            })}
+                </span>
+                {item.badge && (
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                      item.badgeColor === 'red'
+                        ? 'bg-error/20 text-error'
+                        : 'bg-accent-blue/20 text-accent-blue'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>

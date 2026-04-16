@@ -14,6 +14,10 @@ import CalendarPage from './pages/CalendarPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import BillingPage from './pages/BillingPage'
 import SettingsPage from './pages/SettingsPage'
+import BrandKitPage from './pages/BrandKitPage'
+import NotificationsPage from './pages/NotificationsPage'
+import ImageGenPage from './pages/ImageGenPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -33,6 +37,10 @@ export default function App() {
       <Route path="/analytics" element={<AnalyticsPage />} />
       <Route path="/billing" element={<BillingPage />} />
       <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/brand-kit" element={<BrandKitPage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/image-gen" element={<ImageGenPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
